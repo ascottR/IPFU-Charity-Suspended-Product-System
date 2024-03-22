@@ -1,19 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const router = require("./routes/ProductRoutes");
+require("dotenv").config();
+PORT = process.env.PORT || 3000;
 const app = express();
+const cors = require("cors");
 
 //middleware
-app.use("/", (req, res, next) => {
-  res.send("It is working");
-});
+app.use(cors());
+
+app.use("/products", router);
+app.use(express.json());
 
 mongoose
-  .connect(
-    "mongodb+srv://tehan:<ZmgUHJ5g8bDgOODm>@cluster0.hbb4nup.mongodb.net/"
-  )
-  .then(() => console.log("Connected to MongoDB"))
+  .connect(process.env.MONGODB_URI)
   .then(() => {
-    app.listen(3000);
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.error("MongoDB connection error:", err));
