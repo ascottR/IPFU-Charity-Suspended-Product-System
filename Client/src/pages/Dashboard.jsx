@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
-const inventory = () => {
+const Dashboard = () => {
   return (
     <div>
       <>
@@ -22,4 +22,4 @@ const inventory = () => {
   );
 };
 
-export default inventory;
+export default Dashboard;
