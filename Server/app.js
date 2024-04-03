@@ -7,10 +7,9 @@ const app = express();
 const cors = require("cors");
 
 //middleware
-app.use(cors());
-
-app.use("/products", router);
 app.use(express.json());
+app.use(cors());
+app.use("/products", router);
 
 mongoose
   .connect(process.env.MONGODB_URI)
