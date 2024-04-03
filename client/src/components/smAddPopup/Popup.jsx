@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/css/smPopup.css";
+import "./Popup.css";
 
 function Popup({ showPopup, handleClosePopup }) {
   const [formData, setFormData] = useState({

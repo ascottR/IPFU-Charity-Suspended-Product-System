@@ -1,7 +1,7 @@
-import NavBar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import Popup from "../components/smPopup";
-import "../assets/css/smInventory.css";
+import Sidebar from "../components/smSidebar/Sidebar";
+import NavBar from "../components/smNavbar/Navbar";
+import Popup from "../components/smAddPopup/Popup";
+import "../assets/css/smInventory-styles.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
