@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Pickups from "./pages/Pickups";
-import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
-import InventorySM from "./pages/InventorySM";
+import Pickups from "./pages/smPickups";
+import Dashboard from "./pages/smDashboard";
+import Settings from "./pages/smSettings";
+import InventorySM from "./pages/smInventory";
 
 const App = () => {
   return (

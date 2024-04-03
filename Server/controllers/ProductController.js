@@ -1,22 +1,120 @@
 const Product = require("../models/Product");
 
-const getAllProducts = async (req, res, next) => {
-  let products;
+// Function to get all products
+exports.getAllProducts = async (req, res, next) => {
   try {
-    products = await Product.find();
+    let products = await Product.find();
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No products available in inventory." });
+    }
+    return res.status(200).json({ products });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
-
-  //not found
-  if (!products) {
-    return res
-      .status(404)
-      .json({ message: "No Product available in Inventory." });
-  }
-
-  //Display all products
-  return res.status(200).json({ products });
 };
 
-exports.getAllProducts = getAllProducts;
+// Function to add a new product
+exports.addProduct = async (req, res, next) => {
+  try {
+    // Check if req.body exists and contains the expected properties
+    if (
+      !req.body ||
+      !req.body.name ||
+      !req.body.code ||
+      !req.body.price ||
+      !req.body.quantity ||
+      !req.body.image
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Missing required fields in the request body" });
+    }
+
+    const name = req.body.name;
+    const code = req.body.code;
+    const price = req.body.price;
+    const quantity = parseInt(req.body.quantity); // Parsing quantity as a number
+    const image = req.body.image;
+
+    // Continue with the rest of your code
+    const newProduct = new Product({
+      name: name,
+      code: code,
+      price: price,
+      quantity: quantity,
+      image: image,
+    });
+    await newProduct.save();
+
+    return res.status(201).json({ message: "Product added successfully" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Function to update a product
+exports.updateProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+    const { name, code, price, quantity, image } = req.body;
+
+    const updatedProduct = {
+      name,
+      code,
+      price,
+      quantity,
+      image,
+    };
+
+    const updatedProductDocument = await Product.findByIdAndUpdate(
+      productId,
+      updatedProduct,
+      { new: true }
+    );
+
+    if (!updatedProductDocument) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    return res.status(200).json({
+      message: "Product updated successfully",
+      product: updatedProductDocument,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Function to delete a product
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    // Extract the product ID from the URL parameters
+    const productId = req.params.id;
+
+    // // Validate the product ID (optional, but recommended)
+    // if (!mongoose.Types.ObjectId.isValid(productId)) {
+    //   return res.status(400).json({ message: "Invalid product ID" });
+    // }
+
+    // Find the product and delete it
+    const deletedProduct = await Product.findOneAndDelete({ _id: productId });
+
+    // Check if the product exists and was successfully deleted
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    return res.status(200).json({
+      message: "Product deleted successfully",
+      product: deletedProduct,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
