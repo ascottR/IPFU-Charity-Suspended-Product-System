@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Popup.css";
+import "./editPopup.css";
 
-function Popup({ showPopup, handleClosePopup }) {
+function EditPopup({ showPopup, handleClosePopup, productId }) {
   const [formData, setFormData] = useState({
     code: "",
     name: "",
@@ -10,6 +10,25 @@ function Popup({ showPopup, handleClosePopup }) {
     quantity: "",
     image: "",
   });
+
+  useEffect(() => {
+    // Fetch product data based on productId when component mounts
+    axios
+      .get(`http://localhost:3000/products/${productId}`)
+      .then((response) => {
+        const productData = response.data.product;
+        setFormData({
+          code: productData.code,
+          name: productData.name,
+          price: productData.price,
+          quantity: productData.quantity,
+          image: productData.image,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+      });
+  }, [productId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,15 +41,15 @@ function Popup({ showPopup, handleClosePopup }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/products/add", formData)
+      .put(`http://localhost:3000/products/update/${productId}`, formData)
       .then((response) => {
-        console.log(response.data.message); // Product added successfully
-        window.alert("Product added successfully!");
+        console.log(response.data.message); // Product updated successfully
+        window.alert("Product updated successfully!");
         handleClosePopup();
         window.location.reload(); // Refresh the page
       })
       .catch((error) => {
-        console.error("Error adding product:", error);
+        console.error("Error updating product:", error);
       });
   };
 
@@ -41,7 +60,7 @@ function Popup({ showPopup, handleClosePopup }) {
           <span className="close" onClick={handleClosePopup}>
             &times;
           </span>
-          <h2>Add New Product</h2>
+          <h2>Edit Product</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="code">Code:</label>
@@ -64,7 +83,7 @@ function Popup({ showPopup, handleClosePopup }) {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">Price:</label>
+              <label htmlFor="price">Price (LKR):</label>
               <input
                 type="number"
                 id="price"
@@ -93,8 +112,7 @@ function Popup({ showPopup, handleClosePopup }) {
                 onChange={handleChange}
               />
             </div>
-
-            <button type="submit">Add Product</button>
+            <button type="submit">Update Product</button>
           </form>
         </div>
       </div>
@@ -102,4 +120,4 @@ function Popup({ showPopup, handleClosePopup }) {
   );
 }
 
-export default Popup;
+export default EditPopup;

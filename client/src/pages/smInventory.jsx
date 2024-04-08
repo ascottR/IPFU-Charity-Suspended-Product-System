@@ -1,6 +1,8 @@
 import Sidebar from "../components/smSidebar/Sidebar";
 import NavBar from "../components/smNavbar/Navbar";
 import Popup from "../components/smAddPopup/Popup";
+import EditPopup from "../components/smEditPopup/editPopup";
+
 import "../assets/css/smInventory-styles.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -15,7 +17,9 @@ import {
 function Inventory() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null); // State for error handling
-  const [showPopup, setShowPopup] = useState(false); // State for controlling popup visibility
+  const [showAddPopup, setShowAddPopup] = useState(false); // State for controlling add popup visibility
+  const [showEditPopup, setShowEditPopup] = useState(false); // State for controlling edit popup visibility
+  const [editPopupProductId, setEditPopupProductId] = useState(null); // State to store the id of the product being edited
 
   //fetching all products
   useEffect(() => {
@@ -45,14 +49,25 @@ function Inventory() {
       });
   };
 
-  // Function to handle opening popup
-  const handleOpenPopup = () => {
-    setShowPopup(true);
+  // Function to handle opening add popup
+  const handleOpenAddPopup = () => {
+    setShowAddPopup(true);
   };
 
-  // Function to handle closing popup
-  const handleClosePopup = () => {
-    setShowPopup(false);
+  // Function to handle closing add popup
+  const handleCloseAddPopup = () => {
+    setShowAddPopup(false);
+  };
+
+  // Function to handle opening edit popup
+  const handleOpenEditPopup = (productId) => {
+    setEditPopupProductId(productId);
+    setShowEditPopup(true);
+  };
+
+  // Function to handle closing edit popup
+  const handleCloseEditPopup = () => {
+    setShowEditPopup(false);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -79,7 +94,12 @@ function Inventory() {
         <div className="inventory-section sm:col-span-10 mt-6 mr-28">
           <div className="inventory-wrapper flex items-center justify-between">
             <h2>Inventory</h2>
-            <button onClick={handleOpenPopup}>Add New Product</button>
+            <div>
+              <button onClick={handleOpenAddPopup} className="mr-2">
+                Add New Product
+              </button>
+              <button>Generate PDF</button>
+            </div>
           </div>
           <div className="product-list">
             <h3>Product List</h3>
@@ -88,7 +108,7 @@ function Inventory() {
                 <tr>
                   <th>Code</th>
                   <th>Name</th>
-                  <th>Price</th>
+                  <th>Price(LKR)</th>
                   <th>Quantity</th>
                   <th>Image</th>
                   <th>Action</th>
@@ -105,7 +125,10 @@ function Inventory() {
                       <img src={product.image} alt={product.name} />
                     </td>
                     <td className="action-column">
-                      <button className="mr-2">
+                      <button
+                        onClick={() => handleOpenEditPopup(product._id)}
+                        className="mr-2"
+                      >
                         <FontAwesomeIcon
                           icon={faEdit}
                           className="text-blue-500 hover:text-blue-700 cursor-pointer"
@@ -144,7 +167,13 @@ function Inventory() {
         </div>
       </div>
       {/* Popup for adding new product */}
-      <Popup showPopup={showPopup} handleClosePopup={handleClosePopup} />
+      <Popup showPopup={showAddPopup} handleClosePopup={handleCloseAddPopup} />
+      {/* Popup for editing product */}
+      <EditPopup
+        showPopup={showEditPopup}
+        handleClosePopup={handleCloseEditPopup}
+        productId={editPopupProductId}
+      />
     </>
   );
 }

@@ -16,6 +16,28 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
+// Function to get a single product by ID
+exports.getProductById = async (req, res, next) => {
+  try {
+    // Extract the product ID from the URL parameters
+    const productId = req.params.id;
+
+    // Find the product by ID
+    const product = await Product.findById(productId);
+
+    // Check if the product exists
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // If the product exists, return it
+    return res.status(200).json({ product });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 // Function to add a new product
 exports.addProduct = async (req, res, next) => {
   try {
@@ -36,10 +58,9 @@ exports.addProduct = async (req, res, next) => {
     const name = req.body.name;
     const code = req.body.code;
     const price = req.body.price;
-    const quantity = parseInt(req.body.quantity); // Parsing quantity as a number
+    const quantity = parseInt(req.body.quantity);
     const image = req.body.image;
 
-    // Continue with the rest of your code
     const newProduct = new Product({
       name: name,
       code: code,
