@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require("./routes/ProductRoutes");
+const router = require("./routes/ReceiverRoutes");
 require("dotenv").config();
 PORT = process.env.PORT || 3000;
 const app = express();
@@ -9,7 +9,7 @@ const cors = require("cors");
 //middleware
 app.use(express.json());
 app.use(cors());
-app.use("/products", router);
+app.use("/receiver", router);
 
 mongoose
   .connect(process.env.MONGODB_URI)
