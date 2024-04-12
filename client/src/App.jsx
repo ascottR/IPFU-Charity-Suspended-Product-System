@@ -4,6 +4,8 @@ import Pickups from "./pages/smPickups";
 import Dashboard from "./pages/smDashboard";
 import Settings from "./pages/smSettings";
 import InventorySM from "./pages/smInventory";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
             <Route path="/inventory" element={<InventorySM />} />
           </Routes>
         </main>
+        <ToastContainer />
       </div>
     </Router>
   );

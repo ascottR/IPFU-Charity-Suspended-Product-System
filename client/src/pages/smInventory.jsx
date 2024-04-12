@@ -2,9 +2,11 @@ import Sidebar from "../components/smSidebar/Sidebar";
 import NavBar from "../components/smNavbar/Navbar";
 import Popup from "../components/smAddPopup/Popup";
 import EditPopup from "../components/smEditPopup/editPopup";
+import SearchBar from "../components/smSearchBar";
+import PrintComponent from "../components/PrintComponent";
 
 import "../assets/css/smInventory-styles.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +14,11 @@ import {
   faTrash,
   faChevronLeft,
   faChevronRight,
+  faPlus,
+  faPrint,
 } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+import { useReactToPrint } from "react-to-print";
 
 function Inventory() {
   const [products, setProducts] = useState([]);
@@ -20,6 +26,7 @@ function Inventory() {
   const [showAddPopup, setShowAddPopup] = useState(false); // State for controlling add popup visibility
   const [showEditPopup, setShowEditPopup] = useState(false); // State for controlling edit popup visibility
   const [editPopupProductId, setEditPopupProductId] = useState(null); // State to store the id of the product being edited
+  const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
 
   //fetching all products
   useEffect(() => {
@@ -42,12 +49,34 @@ function Inventory() {
         console.log(response.data.message); // Product deleted successfully
         // Remove the deleted product from the state
         setProducts(products.filter((product) => product._id !== productId));
-        window.alert("Product deleted successfully!");
+        toast.success("Product deleted successfully!");
       })
       .catch((error) => {
         console.error("Error deleting product:", error);
       });
   };
+
+  // Function to handle search
+  const handleSearch = (query) => {
+    if (query === "") {
+      // If the search query is empty, display all products
+      setFilteredProducts(products);
+    } else {
+      // Filter products based on the search query
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query.toLowerCase()) ||
+          product.code.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
+  //Function to handle Print
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   // Function to handle opening add popup
   const handleOpenAddPopup = () => {
@@ -96,13 +125,24 @@ function Inventory() {
             <h2>Inventory</h2>
             <div>
               <button onClick={handleOpenAddPopup} className="mr-2">
-                Add New Product
+                <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                Add Product
               </button>
-              <button>Generate PDF</button>
+              <button onClick={handlePrint}>
+                <FontAwesomeIcon icon={faPrint} className="mr-2" />
+                Print All
+              </button>
             </div>
           </div>
+          <SearchBar handleSearch={handleSearch} />
+
           <div className="product-list">
             <h3>Product List</h3>
+            <div style={{ display: "none" }}>
+              <div ref={componentRef}>
+                <PrintComponent products={currentProducts} />
+              </div>
+            </div>
             <table className="styled-table">
               <thead>
                 <tr>
@@ -115,31 +155,31 @@ function Inventory() {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
+                {currentProducts.map((product) => (
                   <tr key={product._id}>
                     <td>{product.code}</td>
                     <td>{product.name}</td>
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
                     <td>
-                      <img src={product.image} alt={product.name} />
+                      <img
+                        className="h-16 w-17"
+                        src={`http://localhost:3000/${product.image}`}
+                        alt={product.name}
+                      />
                     </td>
                     <td className="action-column">
-                      <button
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="text-blue-500 hover:text-blue-700 cursor-pointer p-2 text-xl"
                         onClick={() => handleOpenEditPopup(product._id)}
-                        className="mr-2"
-                      >
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          className="text-blue-500 hover:text-blue-700 cursor-pointer"
-                        />
-                      </button>
-                      <button onClick={() => handleDeleteProduct(product._id)}>
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          className="text-red-500 hover:text-red-700 cursor-pointer"
-                        />
-                      </button>
+                      />
+
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className="text-red-500 hover:text-red-700 cursor-pointer p-2 text-xl"
+                        onClick={() => handleDeleteProduct(product._id)}
+                      />
                     </td>
                   </tr>
                 ))}

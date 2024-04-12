@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const fs = require("fs");
 
 // Function to get all products
 exports.getAllProducts = async (req, res, next) => {
@@ -47,19 +48,21 @@ exports.addProduct = async (req, res, next) => {
       !req.body.name ||
       !req.body.code ||
       !req.body.price ||
-      !req.body.quantity ||
-      !req.body.image
+      !req.body.quantity
     ) {
       return res
         .status(400)
         .json({ message: "Missing required fields in the request body" });
+    }
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
     }
 
     const name = req.body.name;
     const code = req.body.code;
     const price = req.body.price;
     const quantity = parseInt(req.body.quantity);
-    const image = req.body.image;
+    const image = req.file.path;
 
     const newProduct = new Product({
       name: name,
@@ -129,6 +132,9 @@ exports.deleteProduct = async (req, res, next) => {
     if (!deletedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
+
+    // Delete the image file from the server's file system
+    fs.unlinkSync(deletedProduct.image);
 
     return res.status(200).json({
       message: "Product deleted successfully",

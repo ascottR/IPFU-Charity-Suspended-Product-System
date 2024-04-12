@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Popup.css";
+import { toast } from "react-toastify";
 
 function Popup({ showPopup, handleClosePopup }) {
   const [formData, setFormData] = useState({
@@ -8,30 +9,54 @@ function Popup({ showPopup, handleClosePopup }) {
     name: "",
     price: "",
     quantity: "",
-    image: "",
+    image: null, // Initialize image state
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+
+    if (name === "image") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: files[0],
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000/products/add", formData)
-      .then((response) => {
-        console.log(response.data.message); // Product added successfully
-        window.alert("Product added successfully!");
-        handleClosePopup();
-        window.location.reload(); // Refresh the page
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("code", formData.code);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("price", formData.price);
+    formDataToSend.append("quantity", formData.quantity);
+    formDataToSend.append("image", formData.image);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/products/add",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response.data.message);
+      toast.success("Product Added successfully!"); // Display success toast
+      handleClosePopup();
+      window.location.reload();
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   return (
@@ -84,16 +109,14 @@ function Popup({ showPopup, handleClosePopup }) {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="image">Image URL:</label>
+              <label htmlFor="image">Image:</label>
               <input
-                type="text"
+                type="file"
                 id="image"
                 name="image"
-                value={formData.image}
                 onChange={handleChange}
               />
             </div>
-
             <button type="submit">Add Product</button>
           </form>
         </div>

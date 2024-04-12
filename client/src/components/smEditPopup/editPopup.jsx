@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./editPopup.css";
+import { toast } from "react-toastify";
 
 function EditPopup({ showPopup, handleClosePopup, productId }) {
   const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ function EditPopup({ showPopup, handleClosePopup, productId }) {
       .put(`http://localhost:3000/products/update/${productId}`, formData)
       .then((response) => {
         console.log(response.data.message); // Product updated successfully
-        window.alert("Product updated successfully!");
+        toast.success("Product updated successfully!");
         handleClosePopup();
         window.location.reload(); // Refresh the page
       })

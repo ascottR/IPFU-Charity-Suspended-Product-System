@@ -5,11 +5,7 @@ const NavBar = () => {
   return (
     <nav className="navbar sm:flex hidden items-center justify-between">
       <div className="navbar-left flex items-center ">
-        <img
-          src="https://via.placeholder.com/150"
-          alt="Company Logo"
-          className="navbar-logo  "
-        />
+        <img src="/logo64.png" alt="Company Logo" className="navbar-logo  " />
         <h1 className="navbar-company-name ">I Paid For You </h1>
       </div>
       <div className="navbar-right flex items-center">
