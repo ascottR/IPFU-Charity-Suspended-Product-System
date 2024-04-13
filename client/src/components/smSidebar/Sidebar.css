@@ -1,0 +1,35 @@
+/* Sidebar.css */
+
+.sidebar {
+  background-color: #2c3e50; /* Dark blue background */
+  width: 240px;
+  padding: 20px;
+  height: calc(100vh - 64px); /* Height of viewport - header height */
+  overflow-y: auto; /* Enable scrolling if content exceeds sidebar height */
+}
+
+.sidebar-menu {
+  margin-top: 48px;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-item {
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  background-color: #34495e; /* Darker blue background for items */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #2c3e50; /* Dark blue background on hover */
+}
+
+.sidebar-item a {
+  color: #fff; /* White text color */
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}

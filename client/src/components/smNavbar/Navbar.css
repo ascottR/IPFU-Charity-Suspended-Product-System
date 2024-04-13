@@ -1,0 +1,26 @@
+/* NavBar.css */
+
+.navbar {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 12px 20px;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.navbar-company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-icon {
+  margin-left: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}

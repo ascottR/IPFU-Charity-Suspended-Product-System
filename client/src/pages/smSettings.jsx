@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import "../assets/css/shopprofile.css";
+import NavBar from "../components/smNavbar/Navbar";
+import Sidebar from "../components/smSidebar/Sidebar";
+import "../assets/css/smSettings-styles.css";
 
 const ShopProfile = () => {
   return (

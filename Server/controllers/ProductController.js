@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const fs = require("fs");
 
 // Function to get all products
 exports.getAllProducts = async (req, res, next) => {
@@ -10,6 +11,28 @@ exports.getAllProducts = async (req, res, next) => {
         .json({ message: "No products available in inventory." });
     }
     return res.status(200).json({ products });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Function to get a single product by ID
+exports.getProductById = async (req, res, next) => {
+  try {
+    // Extract the product ID from the URL parameters
+    const productId = req.params.id;
+
+    // Find the product by ID
+    const product = await Product.findById(productId);
+
+    // Check if the product exists
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // If the product exists, return it
+    return res.status(200).json({ product });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
@@ -48,9 +71,49 @@ exports.addProduct = async (req, res, next) => {
       image: image,
     });
     await newProduct.save();
-
     return res.status(201).json({ message: "Product added successfully" });
   } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Function to add a new product
+exports.addProduct = async (req, res, next) => {
+  try {
+    // Check if req.body exists and contains the expected properties
+    if (
+      !req.body ||
+      !req.body.name ||
+      !req.body.code ||
+      !req.body.price ||
+      !req.body.quantity
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Missing required fields in the request body" });
+    }
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const name = req.body.name;
+    const code = req.body.code;
+    const price = req.body.price;
+    const quantity = parseInt(req.body.quantity);
+    const image = req.file.path;
+
+    const newProduct = new Product({
+      name: name,
+      code: code,
+      price: price,
+      quantity: quantity,
+      image: image,
+    });
+    await newProduct.save();
+
+    return res.status(201).json({ message: "Product added successfully" });
+     } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
@@ -108,6 +171,9 @@ exports.deleteProduct = async (req, res, next) => {
     if (!deletedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
+
+    // Delete the image file from the server's file system
+    fs.unlinkSync(deletedProduct.image);
 
     return res.status(200).json({
       message: "Product deleted successfully",

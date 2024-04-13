@@ -1,41 +1,25 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import NavBar from "../components/smNavbar/Navbar";
+import Sidebar from "../components/smSidebar/Sidebar";
 
-function Pickups() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null); // State for error handling
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/products")
-      .then((response) => {
-        setProducts(response.data.products);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-        setError(error.message); // Set error state
-      });
-  }, []);
-
+const Pickups = () => {
   return (
     <div>
-      <h1>Products</h1>
-      {error ? (
-        <p>Error: {error}</p> // Display error message if an error occurs
-      ) : (
-        <ul>
-          {products.map((product) => (
-            <>
-              <li key={product._id}>{product.name}</li>
-              <li>{product.code}</li>
-              <li>{product.price}</li>
-              <li>{product.quantity}</li>
-            </>
-          ))}
-        </ul>
-      )}
+      <>
+        <NavBar />
+        <div className="content-section grid sm:grid-cols-12 gap-16">
+          <div className="sm:col-span-2">
+            <Sidebar />
+          </div>
+          <div className="inventory-section sm:col-span-10">
+            <div className="inventory-wrapper flex items-center justify-between">
+              <h2>Pickups</h2>
+            </div>
+          </div>
+        </div>
+      </>
     </div>
   );
-}
+};
 
 export default Pickups;
