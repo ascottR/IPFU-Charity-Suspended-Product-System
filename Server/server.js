@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router2 = require("./routes/ReceiverRoutes");
+//const router2 = require("./routes/ReceiverRoutes");
 const router = require("./routes/ProductRoutes");
 const cors = require("cors");
 require("dotenv").config();
@@ -13,7 +13,6 @@ app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
 app.use("/products", router);
-app.use("/receiver", router2);
 
 mongoose
   .connect(process.env.MONGODB_URI)
