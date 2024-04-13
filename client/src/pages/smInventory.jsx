@@ -4,9 +4,9 @@ import Popup from "../components/smAddPopup/Popup";
 import EditPopup from "../components/smEditPopup/editPopup";
 import SearchBar from "../components/smSearchBar";
 import PrintComponent from "../components/PrintComponent";
-
 import "../assets/css/smInventory-styles.css";
 import React, { useState, useEffect, useRef } from "react";
+
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,6 +20,7 @@ import {
 import { toast } from "react-toastify";
 import { useReactToPrint } from "react-to-print";
 
+
 function Inventory() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null); // State for error handling
@@ -27,7 +28,6 @@ function Inventory() {
   const [showEditPopup, setShowEditPopup] = useState(false); // State for controlling edit popup visibility
   const [editPopupProductId, setEditPopupProductId] = useState(null); // State to store the id of the product being edited
   const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
-
   //fetching all products
   useEffect(() => {
     axios
