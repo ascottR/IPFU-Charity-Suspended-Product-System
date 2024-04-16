@@ -72,9 +72,49 @@ exports.addProduct = async (req, res, next) => {
       image: image,
     });
     await newProduct.save();
-
     return res.status(201).json({ message: "Product added successfully" });
   } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Function to add a new product
+exports.addProduct = async (req, res, next) => {
+  try {
+    // Check if req.body exists and contains the expected properties
+    if (
+      !req.body ||
+      !req.body.name ||
+      !req.body.code ||
+      !req.body.price ||
+      !req.body.quantity
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Missing required fields in the request body" });
+    }
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const name = req.body.name;
+    const code = req.body.code;
+    const price = req.body.price;
+    const quantity = parseInt(req.body.quantity);
+    const image = req.file.path;
+
+    const newProduct = new Product({
+      name: name,
+      code: code,
+      price: price,
+      quantity: quantity,
+      image: image,
+    });
+    await newProduct.save();
+
+    return res.status(201).json({ message: "Product added successfully" });
+     } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }

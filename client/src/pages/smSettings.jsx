@@ -63,7 +63,6 @@ const ShopProfile = ({ id }) => {
         console.error("Error updating product:", error);
       });
   };
-
   return (
     <>
       <NavBar />
