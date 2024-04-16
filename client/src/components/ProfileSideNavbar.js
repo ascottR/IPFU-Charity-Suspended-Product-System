@@ -1,12 +1,14 @@
 import React from 'react';
 import profileImage from '../assets/img/profileImage.jpg';
 import {motion} from 'framer-motion'; 
+import {NavLink } from 'react-router-dom';
 
 
 const ProfileSideNavbar = () => {
   let Links =[
-    {name:"Edit profile",links:"/"},
-    {name:"Password",links:"/"},
+    {name:" My Profile",links:"myProfile"},
+    {name:"Edit profile",links:"editProfile"},
+    {name:"Password",links:"editPassword"},
     {name:"Log out",links:"/"},
   ];
 
@@ -31,7 +33,10 @@ const ProfileSideNavbar = () => {
       {
         Links.map((link)=>(
           <li key={link.name} className='my-3 hover:scale-110 duration-500'>
-            <a href={link.links} className='hover:bg-green-500 bg-green-100 text-xl border-none rounded-md duration-500 px-14 py-2 shadow-md'>{link.name}</a>
+            <NavLink to={link.links} className={({isActive})=>{
+              return ('text-xl border-none rounded-md duration-500 px-14 py-2 shadow-md' +
+              (isActive ? ' bg-green-500':'hover:bg-green-500 bg-green-100'));
+            }}>{link.name}</NavLink>
           </li>
         ))
       }

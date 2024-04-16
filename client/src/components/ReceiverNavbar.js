@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import logo from '../assets/img/logo.svg'
+import { NavLink } from 'react-router-dom';
 
 
  
@@ -10,7 +11,7 @@ let Links =[
     {name:"PRODUCTS",links:"/"},
     {name:"ABOUT",links:"/"},
     {name:"CONTACT",links:"/"},
-    {name:"PROFILE",links:"/receiverprofile"},
+    {name:"PROFILE",links:"/receiverprofile/myProfile"},
     {name:"NOTIFICATIONS",links:"/"},
 ];
 let[open,setOpen] = useState(false);
@@ -29,7 +30,7 @@ return(
                 {
                     Links.map((link)=>(
                         <li key={link.name} className='md:ml-8 md:my-0 my-5'>
-                            <a href={link.links} className='font-bold hover:text-white duration-500'>{link.name}</a>
+                            <a  href={link.links} className=' hover:text-white duration-500 font-bold'>{link.name}</a>
                         </li>
                     ))
                 }

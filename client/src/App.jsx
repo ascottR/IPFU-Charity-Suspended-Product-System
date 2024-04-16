@@ -8,7 +8,10 @@ import InventorySM from "./pages/smInventory";
 import Navbar from './components/ReceiverNavbar';
 import ReceiverHomepage from './pages/ReceiverHomepage';
 import ReceiverProfilePage from './pages/ReceiverProfilePage';
+import ReceiverProfile from './components/ReceiverProfile';
+import ReceiverEditProfileForm from './components/ReceiverEditProfileForm';
 import LoginPage from './pages/LoginPage';
+import EditPassword from './components/EditPassword';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,13 +29,15 @@ const App = () => {
             <Route path="/pickups" element={<Pickups />} />
             <Route path="/inventory" element={<InventorySM />} />
 
-             <Route path='/' element={<ReceiverHomepage/>}/>
-        <Route exact path='/receiverprofile' element={
-        <div>
-        <ReceiverProfilePage />
-        </div>
-        }/>
+            
+        <Route path='/' element={<ReceiverHomepage/>}/>
+        <Route path='/receiverprofile' element={<ReceiverProfilePage />}>
+            <Route path='myProfile' element={<ReceiverProfile />} />
+            <Route path='editProfile' element={<ReceiverEditProfileForm />} />
+            <Route path='editPassword' element={<EditPassword/>} />
+          </Route>
         <Route path='/login' element={<LoginPage/>}/>
+      
           </Routes>
         </main>
         <ToastContainer />

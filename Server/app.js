@@ -1,22 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router2 = require("./routes/ReceiverRoutes");
-const router = require("./routes/ProductRoutes");
-const cors = require("cors");
+const router = require("./routes/ReceiverRoutes");
 require("dotenv").config();
-PORT = process.env.PORT || 3000;
+PORT = process.env.PORT || 8070;
 const app = express();
+const cors = require("cors");
 
 //middleware
 app.use(express.json());
 app.use(cors());
-app.use("/uploads", express.static("uploads"));
-
-app.use("/products", router);
-app.use("/receiver", router2);
+app.use("/receiver", router);
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);

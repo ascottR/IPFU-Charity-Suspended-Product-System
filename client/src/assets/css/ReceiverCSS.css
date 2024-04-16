@@ -149,3 +149,17 @@
     width: 400px;
     clip-path: circle();
 }       
+
+.profile-background{
+    background:url(../img/LoginImage02.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.profile-underline{
+    display: block; 
+    height: 2px; 
+    background-color: #2ECC71; 
+    margin-left: 2px; 
+    width: 180px; 
+}
