@@ -1,58 +1,43 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './assets/css/index.css';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Feedbackcrud from './pages/Feedbackcrud';
+import Feedback from './pages/Feedback';
+import Requestform from './pages/Requestform';
+import Requesttable from './pages/Requesttable';
+import Replytable from './pages/Replytable';
+import Replyui from './pages/Replyui';
+import Replytablecrud from './pages/Replytablecrud';
+import EditFeedback from './pages/EditFeedback';
+import EditRequest from './pages/EditRequest';
+import EditReply from './pages/EditReply';
+import CommunicationHome from './pages/CommunicationHome';
 
-import Pickups from "./pages/smPickups";
-import Dashboard from "./pages/smDashboard";
-import Settings from "./pages/smSettings";
-import InventorySM from "./pages/smInventory";
 
-import Navbar from './components/ReceiverNavbar';
-import ReceiverHomepage from './pages/ReceiverHomepage';
-import ReceiverProfilePage from './pages/ReceiverProfilePage';
-import LoginPage from './pages/LoginPage';
-
-import ClaimPage from "./pages/ClaimPage";
-import ClaimRecords from "./pages/ClaimRecords";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import Navbar from "./components/ReceiverNavbar";
-import ReceiverHomepage from "./pages/ReceiverHomepage";
-import ReceiverProfilePage from "./pages/ReceiverProfilePage";
-import LoginPage from "./pages/LoginPage";
-
-import TopBar from "./components/Topbar";
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const App = () => {
   return (
     <Router>
       <div className="app">
-        <TopBar />
-        <Navbar />
         <main className="main-content">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/pickups" element={<Pickups />} />
-            <Route path="/inventory" element={<InventorySM />} />
-            <Route path="/claim" element={<ClaimPage/>} />
-            <Route path="/claimRecord" element={<ClaimRecords/>} />
+            <Route path ='/' element ={<CommunicationHome />} />
+            <Route path='/feedback' element={<Feedback />} />
+            <Route path='/feedbackui' element={<Feedbackcrud />} />
+            <Route path='/request' element={<Requestform />} />
+            <Route path='/requestt' element={<Requesttable />} />
+            <Route path='/replyt' element={<Replytable />} />
+            <Route path='/replyui' element={<Replyui />} />
+            <Route path='/replycrud' element={<Replytablecrud />} />
+            <Route path='/editfeedback' element={<EditFeedback />} />
+            <Route path='/editrequest' element={<EditRequest />} />
+            <Route path='/editreply' element={<EditReply />} />
 
-            <Route path="/" element={<ReceiverHomepage />} />
-            <Route
-              exact
-              path="/receiverprofile"
-              element={
-                <div>
-                  <ReceiverProfilePage />
-                </div>
-              }
-            />
-            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
-        <ToastContainer />
       </div>
     </Router>
   );

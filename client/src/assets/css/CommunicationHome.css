@@ -1,0 +1,108 @@
+h1, h3 {
+  align-items: center;
+  color: black;
+}
+
+.feedback-button, .request-button {
+  background-color: green;
+  border-radius: 8px; /* Adjust the value as needed */
+  padding: 8px 16px; /* Optional: Add padding for better visual appearance */
+  border: none; /* Optional: Re
+  
+  move default button border */
+}
+
+.app {
+  font-family: Arial, sans-serif;
+}
+
+.app-bar {
+  background-color: #2ECC71;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.menu-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-links ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.menu-links ul li a {
+  color: white;
+  text-decoration: none;
+}
+.untitled-design-3-1 {
+  position: absolute;
+  top: 76px;
+  left: 900px;
+  width: 728px;
+  height: 700px;
+  object-fit: cover;
+}
+.share-your-thoughts {
+  position: absolute;
+  top: 202px;
+  left: 18px;
+  font-size: 64px;
+  letter-spacing: -0.02em;
+  line-height: 104%;
+  display: flex;
+  align-items: center;
+  width: 678px;
+  height: 229px;
+}
+.help-us-improve,
+.submit-feedback,
+.submit-request {
+  position: absolute;
+  top: 527px;
+  left: 414px;
+  letter-spacing: -0.02em;
+  line-height: 104%;
+  display: flex;
+  align-items: center;
+  width: 336px;
+  height: 54px;
+}
+.submit-feedback,
+.submit-request {
+  background-color: #2ECC71;
+  background-color: #2ECC71;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.help-us-improve,
+.submit-request {
+  left: 28px;
+  width: 305px;
+}
+.help-us-improve {
+  top: 349px;
+  left: 16px;
+  font-size: 40px;
+  width: 597px;
+  height: 109px;
+}
+.feedback-page-child,
+.feedback-page-item {
+  position: absolute;
+  top: 505px;
+  left: 378px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-mediumseagreen);
+  width: 342px;
+  height: 97px;
+}

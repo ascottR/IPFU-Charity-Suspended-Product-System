@@ -1,0 +1,60 @@
+/* Feedbackcrud_ui.css */
+
+/* Style for the container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gill Sans', sans-serif; /* Change font family to Gill Sans, sans-serif */
+
+    height: 100vh; /* Centering the content vertically */
+}
+
+/* Style for the table container */
+.table-container {
+    font-family: 'Gill Sans', sans-serif; /* Change font family to Gill Sans, sans-serif */
+
+    padding-top: 20px; /* Added paddingTop */
+}
+
+/* Style for the table */
+.table {
+    width: 100vh; /* Set the table width to 90% of the container width */
+    height: 30vh;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table horizontally */
+}
+
+/* Style for table header */
+.table th {
+    border: 1px solid #000;
+    padding: 8px;
+    background-color: #4CAF50;
+}
+
+/* Style for table data */
+.table td {
+    font-family: 'Gill Sans', sans-serif; /* Change font family to Gill Sans, sans-serif */
+
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+/* Style for buttons container */
+.button-container {
+    display: flex;
+}
+.button-container {
+    display: flex; /* Align buttons horizontally */
+}
+
+/* Style for buttons */
+.button {
+    margin: 0px 10px;
+    background-color: green; /* Green background color */
+    color: white; /* White text color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 12px 24px; /* Adjust padding to increase button size */
+    font-size: 16px; /* Increase font size */
+    font-family: 'Gill Sans', sans-serif; /* Change font family to Gill Sans, sans-serif */
+}
