@@ -10,6 +10,9 @@ import ReceiverHomepage from './pages/ReceiverHomepage';
 import ReceiverProfilePage from './pages/ReceiverProfilePage';
 import LoginPage from './pages/LoginPage';
 
+import ClaimPage from "./pages/ClaimPage";
+import ClaimRecords from "./pages/ClaimRecords";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,6 +28,8 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/pickups" element={<Pickups />} />
             <Route path="/inventory" element={<InventorySM />} />
+            <Route path="/claim" element={<ClaimPage/>} />
+            <Route path="/claimRecord" element={<ClaimRecords/>} />
 
              <Route path='/' element={<ReceiverHomepage/>}/>
         <Route exact path='/receiverprofile' element={

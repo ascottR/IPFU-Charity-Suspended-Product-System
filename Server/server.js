@@ -17,8 +17,7 @@ app.use("/products", router);
 app.use("/claims",claimsRouter)
 
 mongoose
-  // .connect(process.env.MONGODB_URI)
-  .connect("mongodb+srv://thiloksha25:EqFgBHZUEF8JxWzd@receiver.cbsy44e.mongodb.net/?retryWrites=true&w=majority&appName=Receiver")
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);

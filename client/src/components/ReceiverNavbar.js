@@ -11,6 +11,7 @@ let Links =[
     {name:"ABOUT",links:"/"},
     {name:"CONTACT",links:"/"},
     {name:"PROFILE",links:"/receiverprofile"},
+    {name:"CLAIM",links:"/claim"},
     {name:"NOTIFICATIONS",links:"/"},
 ];
 let[open,setOpen] = useState(false);
