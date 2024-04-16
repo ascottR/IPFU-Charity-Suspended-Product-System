@@ -48,45 +48,6 @@ exports.addProduct = async (req, res, next) => {
       !req.body.name ||
       !req.body.code ||
       !req.body.price ||
-      !req.body.quantity ||
-      !req.body.image
-    ) {
-      return res
-        .status(400)
-        .json({ message: "Missing required fields in the request body" });
-    }
-
-    const name = req.body.name;
-    const code = req.body.code;
-    const price = req.body.price;
-    const quantity = parseInt(req.body.quantity); // Parsing quantity as a number
-    const image = req.body.image;
-
-    // Continue with the rest of your code
-    const newProduct = new Product({
-      name: name,
-      code: code,
-      price: price,
-      quantity: quantity,
-      image: image,
-    });
-    await newProduct.save();
-    return res.status(201).json({ message: "Product added successfully" });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-// Function to add a new product
-exports.addProduct = async (req, res, next) => {
-  try {
-    // Check if req.body exists and contains the expected properties
-    if (
-      !req.body ||
-      !req.body.name ||
-      !req.body.code ||
-      !req.body.price ||
       !req.body.quantity
     ) {
       return res
@@ -113,7 +74,7 @@ exports.addProduct = async (req, res, next) => {
     await newProduct.save();
 
     return res.status(201).json({ message: "Product added successfully" });
-     } catch (err) {
+  } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
@@ -145,7 +106,7 @@ exports.updateProduct = async (req, res, next) => {
 
     return res.status(200).json({
       message: "Product updated successfully",
-      product: updatedProductDocument,
+      //product: updatedProductDocument,
     });
   } catch (err) {
     console.error(err);
@@ -177,7 +138,7 @@ exports.deleteProduct = async (req, res, next) => {
 
     return res.status(200).json({
       message: "Product deleted successfully",
-      product: deletedProduct,
+      //product: deletedProduct,
     });
   } catch (err) {
     console.error(err);

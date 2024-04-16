@@ -1,24 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Pickups from "./pages/smPickups";
 import Dashboard from "./pages/smDashboard";
 import Settings from "./pages/smSettings";
 import InventorySM from "./pages/smInventory";
 
-import Navbar from './components/ReceiverNavbar';
-import ReceiverHomepage from './pages/ReceiverHomepage';
-import ReceiverProfilePage from './pages/ReceiverProfilePage';
-import LoginPage from './pages/LoginPage';
+import Navbar from "./components/ReceiverNavbar";
+import ReceiverHomepage from "./pages/ReceiverHomepage";
+import ReceiverProfilePage from "./pages/ReceiverProfilePage";
+import LoginPage from "./pages/LoginPage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import TopBar from "./components/Topbar";
 
 const App = () => {
   return (
     <Router>
       <div className="app">
-        <Navbar/>
+        <TopBar />
+        <Navbar />
         <main className="main-content">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -26,13 +28,17 @@ const App = () => {
             <Route path="/pickups" element={<Pickups />} />
             <Route path="/inventory" element={<InventorySM />} />
 
-             <Route path='/' element={<ReceiverHomepage/>}/>
-        <Route exact path='/receiverprofile' element={
-        <div>
-        <ReceiverProfilePage />
-        </div>
-        }/>
-        <Route path='/login' element={<LoginPage/>}/>
+            <Route path="/" element={<ReceiverHomepage />} />
+            <Route
+              exact
+              path="/receiverprofile"
+              element={
+                <div>
+                  <ReceiverProfilePage />
+                </div>
+              }
+            />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <ToastContainer />
