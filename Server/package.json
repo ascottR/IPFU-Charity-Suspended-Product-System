@@ -1,13 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Receiver Management System",
-  "main": "index.js",
+  "description": "IPFU",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "Nithil Waduge",
+  "author": "gg",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
