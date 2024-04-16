@@ -3,21 +3,20 @@
 @import "tailwindcss/utilities";
 
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-h1 {
-  color: #333;
-}
-
-p {
-  color: #666;
+#root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
 }

@@ -48,21 +48,22 @@ exports.addProduct = async (req, res, next) => {
       !req.body.name ||
       !req.body.code ||
       !req.body.price ||
-      !req.body.quantity ||
-      !req.body.image
+      !req.body.quantity
     ) {
       return res
         .status(400)
         .json({ message: "Missing required fields in the request body" });
     }
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
 
     const name = req.body.name;
     const code = req.body.code;
     const price = req.body.price;
-    const quantity = parseInt(req.body.quantity); // Parsing quantity as a number
-    const image = req.body.image;
+    const quantity = parseInt(req.body.quantity);
+    const image = req.file.path;
 
-    // Continue with the rest of your code
     const newProduct = new Product({
       name: name,
       code: code,
@@ -145,7 +146,7 @@ exports.updateProduct = async (req, res, next) => {
 
     return res.status(200).json({
       message: "Product updated successfully",
-      product: updatedProductDocument,
+      //product: updatedProductDocument,
     });
   } catch (err) {
     console.error(err);
@@ -177,7 +178,7 @@ exports.deleteProduct = async (req, res, next) => {
 
     return res.status(200).json({
       message: "Product deleted successfully",
-      product: deletedProduct,
+      //product: deletedProduct,
     });
   } catch (err) {
     console.error(err);

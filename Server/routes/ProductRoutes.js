@@ -1,26 +1,29 @@
 const express = require("express");
-const router = express.Router();
+const productRouter = express.Router();
 const Product = require("../models/Product");
 const ProductController = require("../controllers/ProductController");
 const multer = require("multer");
 
-//multer middlware
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads"); // Specify the destination folder
+    cb(null, "uploads/products");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname); // Use the original file name
+    cb(null, Date.now() + "_" + file.originalname);
   },
 });
 
+
 const upload = multer({ storage: storage });
 
-//routes
-router.get("/", ProductController.getAllProducts);
-router.get("/:id", ProductController.getProductById);
-router.post("/add", upload.single("image"), ProductController.addProduct);
-router.put("/update/:id", ProductController.updateProduct);
-router.delete("/delete/:id", ProductController.deleteProduct);
+productRouter.get("/", ProductController.getAllProducts);
+productRouter.get("/:id", ProductController.getProductById);
+productRouter.post(
+  "/add",
+  upload.single("image"),
+  ProductController.addProduct
+);
+productRouter.put("/update/:id", ProductController.updateProduct);
+productRouter.delete("/delete/:id", ProductController.deleteProduct);
 
-module.exports = router;
+module.exports = productRouter;

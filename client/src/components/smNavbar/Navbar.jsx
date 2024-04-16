@@ -3,6 +3,7 @@ import "./Navbar.css"; // Import the CSS file for styling
 
 const NavBar = () => {
   return (
+
     <nav className="navbar sm:flex hidden items-center justify-between">
       <div className="navbar-left flex items-center ">
         <img src="/logo64.png" alt="Company Logo" className="navbar-logo  " />
