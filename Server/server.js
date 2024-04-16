@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const productRouter = require("./routes/ProductRoutes");
 const shopProfileRouter = require("./routes/ShopProfileRoutes");
+const claimsRouter = require("./routes/ClaimsRoutes");
 const cors = require("cors");
 require("dotenv").config();
 PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(cors());
 app.use("/uploads", express.static("uploads"));
 app.use("/products", productRouter);
 app.use("/shops", shopProfileRouter);
+app.use("/claims",claimsRouter)
 
 mongoose
   .connect(process.env.MONGODB_URI)

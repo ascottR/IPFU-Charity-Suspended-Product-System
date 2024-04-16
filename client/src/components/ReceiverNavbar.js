@@ -3,20 +3,22 @@ import { useState } from "react";
 import logo from "../assets/img/logo.svg";
 
 const Navbar = () => {
-  let Links = [
-    { name: "HOME", links: "/" },
-    { name: "PRODUCTS", links: "/" },
-    { name: "ABOUT", links: "/" },
-    { name: "CONTACT", links: "/" },
-    { name: "PROFILE", links: "/receiverprofile" },
-    { name: "NOTIFICATIONS", links: "/" },
-  ];
-  let [open, setOpen] = useState(false);
-  return (
-    <div className="shadow-md sticky top-0 left-0 z-50">
-      <div className="md:flex py-6 md:px-10 bg-green-500 justify-between z-50">
-        <div className="flex items-center ml-4 cursor-pointer">
-          <img src={logo} alt="logo" />
+let Links =[
+    {name:"HOME",links:"/"},
+    {name:"PRODUCTS",links:"/"},
+    {name:"ABOUT",links:"/"},
+    {name:"CONTACT",links:"/"},
+    {name:"PROFILE",links:"/receiverprofile"},
+    {name:"CLAIM",links:"/claim"},
+    {name:"NOTIFICATIONS",links:"/"},
+];
+let[open,setOpen] = useState(false);
+return(
+
+    <div className='shadow-md sticky top-0 left-0 z-50'>
+        <div className='md:flex py-6 md:px-10 bg-green-500 justify-between z-50'>
+        <div className='flex items-center ml-4 cursor-pointer'>
+        <img src={logo} alt="logo"/>
         </div>
         <div
           onClick={() => setOpen(!open)}
