@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/* 
+#root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+} */

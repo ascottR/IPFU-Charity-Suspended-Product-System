@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-//const router2 = require("./routes/ReceiverRoutes");
-const router = require("./routes/ProductRoutes");
+const productRouter = require("./routes/ProductRoutes");
+const shopProfileRouter = require("./routes/ShopProfileRoutes");
 const claimsRouter = require("./routes/ClaimsRoutes");
 const cors = require("cors");
 require("dotenv").config();
@@ -12,8 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
-
-app.use("/products", router);
+app.use("/products", productRouter);
+app.use("/shops", shopProfileRouter);
 app.use("/claims",claimsRouter)
 
 mongoose

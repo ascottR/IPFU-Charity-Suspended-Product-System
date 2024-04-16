@@ -1,5 +1,4 @@
 import Sidebar from "../components/smSidebar/Sidebar";
-import NavBar from "../components/smNavbar/Navbar";
 import Popup from "../components/smAddPopup/Popup";
 import EditPopup from "../components/smEditPopup/editPopup";
 import SearchBar from "../components/smSearchBar";
@@ -19,7 +18,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useReactToPrint } from "react-to-print";
-
 
 function Inventory() {
   const [products, setProducts] = useState([]);
@@ -115,8 +113,7 @@ function Inventory() {
 
   return (
     <>
-      <NavBar />
-      <div className="content-section grid sm:grid-cols-12 gap-16 ">
+      <div className="content-section grid sm:grid-cols-12 gap-16 overflow-y-scroll ">
         <div className="sm:col-span-2">
           <Sidebar />
         </div>
