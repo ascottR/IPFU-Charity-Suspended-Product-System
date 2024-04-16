@@ -15,15 +15,6 @@ import LoginPage from "./pages/LoginPage";
 
 import TopBar from "./components/Topbar";
 
-import Navbar from "./components/ReceiverNavbar";
-import ReceiverHomepage from "./pages/ReceiverHomepage";
-import ReceiverProfilePage from "./pages/ReceiverProfilePage";
-import LoginPage from "./pages/LoginPage";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import TopBar from "./components/Topbar";
-
 const App = () => {
   return (
     <Router>
