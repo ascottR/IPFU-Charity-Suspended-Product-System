@@ -114,7 +114,7 @@ exports.addProduct = async (req, res, next) => {
     await newProduct.save();
 
     return res.status(201).json({ message: "Product added successfully" });
-     } catch (err) {
+  } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }

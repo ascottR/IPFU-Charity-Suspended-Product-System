@@ -6,21 +6,16 @@ import Dashboard from "./pages/smDashboard";
 import Settings from "./pages/smSettings";
 import InventorySM from "./pages/smInventory";
 
-import Navbar from './components/ReceiverNavbar';
-import ReceiverHomepage from './pages/ReceiverHomepage';
-import ReceiverProfilePage from './pages/ReceiverProfilePage';
-import LoginPage from './pages/LoginPage';
+import Navbar from "./components/ReceiverNavbar";
+import ReceiverHomepage from "./pages/ReceiverHomepage";
+import ReceiverProfilePage from "./pages/ReceiverProfilePage";
+import LoginPage from "./pages/LoginPage";
 
 import ClaimPage from "./pages/ClaimPage";
 import ClaimRecords from "./pages/ClaimRecords";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import Navbar from "./components/ReceiverNavbar";
-import ReceiverHomepage from "./pages/ReceiverHomepage";
-import ReceiverProfilePage from "./pages/ReceiverProfilePage";
-import LoginPage from "./pages/LoginPage";
 
 import TopBar from "./components/Topbar";
 
@@ -36,8 +31,8 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/pickups" element={<Pickups />} />
             <Route path="/inventory" element={<InventorySM />} />
-            <Route path="/claim" element={<ClaimPage/>} />
-            <Route path="/claimRecord" element={<ClaimRecords/>} />
+            <Route path="/claim" element={<ClaimPage />} />
+            <Route path="/claimRecord" element={<ClaimRecords />} />
 
             <Route path="/" element={<ReceiverHomepage />} />
             <Route
