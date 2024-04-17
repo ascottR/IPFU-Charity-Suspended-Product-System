@@ -1,0 +1,479 @@
+.topic{
+  color: rgb(0, 0, 0);
+}
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  background-color: #17a552;
+  box-shadow: 0 1px 3px -1px black;
+}
+.nav-logo{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav-logo p{
+  color: white;
+  font-size:40px ;
+  font-weight: 1000;
+
+}
+.nav-menu{
+  display: flex;
+  align-items: center;
+  
+  list-style: none;
+  gap: 50px;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+}
+.nav-menu li{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+}
+.nav-menu hr{
+  border: none;
+  width: 80%;
+  height: 3px;
+  border-radius:10px ;
+  background-color:#17a552 ;
+}
+.nav-login-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-login-btn button{
+  width: 90px;
+  height: 35px;
+  outline:none;
+  border: 1px solid #17a552;
+  border-radius: 10px;
+  color: black;
+  font-size: 15px;
+  font-weight: 250;
+  background-color: white;
+  box-shadow: 0 1px 3px -1px black;
+  cursor: pointer;
+}
+.nav-login-btn button:active{
+  background: lightgreen;
+}
+
+.y{
+  width: '100%';
+  height:'20px';
+  
+
+}
+.x {
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+}
+
+.events-container {
+  width: 48%; 
+  margin-bottom: 20px;
+  margin-right: 1px; 
+}
+
+
+.events {
+  display: flex;
+  align-items: center;
+}
+
+.events img {
+  margin-right: 20px; 
+}
+
+.event-details {
+  flex-grow: 1;
+}
+
+.date {
+  padding: 7px;
+  font-size: 26px;
+  background-color: #d3f0df;
+  width: 150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: white;
+  cursor: pointer;
+  background-color: #31af44;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 16px; 
+}
+
+
+.donate-btn:hover {
+  background-color: rgb(10, 120, 10); 
+}
+
+
+
+.description {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.read {
+  color: blue;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+
+
+
+.donate-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.donate-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.payment-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pay-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.pay-btn:hover {
+  background-color: #0056b3;
+}
+
+.privacy-policy {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+
+.manage-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+
+  
+  border: 2px solid rgb(68, 222, 68); 
+  border-radius: 5px;
+ 
+}
+
+.event-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.add-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* Add event form */
+.event-form {
+  flex: 1;
+  margin-right: 20px;
+ 
+}
+
+/* Event List Section */
+.event-list-container {
+  margin-top: 30px;
+}
+
+
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.event-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.event-item h3 {
+  margin-top: 0;
+}
+
+.event-item p {
+  margin-bottom: 10px;
+}
+
+.event-item div {
+  margin-top: 10px;
+}
+
+.btn {
+  font-size: 15px;
+  padding:  4px 10px; 
+  background-color: rgb(68, 222, 68);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white !important; 
+  text-decoration: none !important; 
+}
+
+.all {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  
+}
+.all li {
+  list-style: none;
+  padding: 40px; 
+  border: 3px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.all li img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #23922e;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: rgb(6, 90, 33);
+}
+
+.container-d{
+  
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.error-message {
+  color: red; 
+  font-size: 14px; 
+  margin-top: 5px; 
+}
+
+
+
+
+
+
+/*addmin page disply events table*/
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+.admin-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+  background-color: #63c18a;
+}
+
+.admin-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.btn {
+  margin-right: 5px;
+  color: white;
+  cursor: pointer;
+  background-color: #43b726;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.up-btn {
+  display: block;
+  margin: 10px auto; 
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  background-color: #23922e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.up-btn:hover {
+  background-color: #106b4d;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style the select dropdown arrow */
+.form-group select::-ms-expand {
+  display: none;
+}
+.form-group select::-webkit-scrollbar {
+  width: 8px;
+}
+.form-group select::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+.update-container {
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  z-index: -1; 
+}
+
+.event-box {
+  background: linear-gradient(to bottom right, rgb(196, 254, 196), rgb(218, 246, 255));
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
