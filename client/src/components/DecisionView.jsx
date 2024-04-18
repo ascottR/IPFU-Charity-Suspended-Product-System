@@ -12,6 +12,7 @@ function DecisionView() {
     d_title: '',
     decisions: ''
   });
+  const [searchTerm, setSearchTerm] = useState(''); // Holds the search term entered by the user
 
   // Fetch decision data from the backend when the component mounts
   useEffect(() => {
@@ -73,10 +74,26 @@ function DecisionView() {
     }
   };
 
+  // Function to filter decisions by manager name
+  const filteredDecisions = decisions.filter(decision => decision.m_name.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
       <strong className="text-gray-700 font-medium">Decisions</strong>
-      <div className="border-x border-gray-200 rounded-sm mt-3 overflow-auto max-h-96">
+      {/* Search bar */}
+      <div className="flex items-center mt-3 mb-4">
+        <label htmlFor="search" className="mr-2">Search by Manager Name:</label>
+        <input
+          type="text"
+          id="search"
+          placeholder="Enter Manager Name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+        />
+      </div>
+      {/* Decision table */}
+      <div className="border-x border-gray-200 rounded-sm overflow-auto max-h-96">
         <table className="w-full text-gray-700 border-separate border border-slate-400">
           <thead>
             <tr>
@@ -88,24 +105,25 @@ function DecisionView() {
             </tr>
           </thead>
           <tbody>
-            {decisions.map((decision) => (
+            {filteredDecisions.map((decision) => (
               <tr key={decision._id}>
                 <td className='border border-slate-300 py-4'>{decision.manager_id}</td>
                 <td className='border border-slate-300'>{decision.m_name}</td>
                 <td className='border border-slate-300'>{decision.d_title}</td>
                 <td className='border border-slate-300'>{decision.decisions}</td>
                 <td className='border border-slate-300'>
-                  <button onClick={() => openModal(decision)} type="button" className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-opacity-50">Update Decision</button>
-                  <button onClick={() => handleDelete(decision._id)} type="button" className="ml-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-50">Delete Decision</button>
+                  <button onClick={() => openModal(decision)} type="button" className="bg-blue-300 text-white px-1 py-0.5 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-opacity-50">Update Decision</button>
+                  <button onClick={() => handleDelete(decision._id)} type="button" className=" bg-red-500 text-white px-1 py-0.5 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-50">Delete Decision</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {/* Update decision modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-          <div className="bg-white rounded-md p-8">
+          <div className="bg-white rounded-md p-8 w-full">
             <h2 className="text-xl font-semibold mb-4">Update Decision</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
