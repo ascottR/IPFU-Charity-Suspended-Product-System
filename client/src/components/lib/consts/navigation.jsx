@@ -16,7 +16,7 @@ import { MdClass } from "react-icons/md";
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'dashboard',
-		label: 'Dashboard',
+		label: 'Home',
 		path: '/',
 		icon: <HiOutlineViewGrid />
 	},

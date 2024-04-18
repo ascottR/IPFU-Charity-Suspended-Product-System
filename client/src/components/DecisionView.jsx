@@ -17,7 +17,7 @@ function DecisionView() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8070/decision/');
+        const response = await axios.get('http://localhost:3000/decision/');
         setDecisions(response.data); // Update state with the fetched decision data
       } catch (error) {
         console.error('Error fetching decision data:', error);
@@ -51,9 +51,10 @@ function DecisionView() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8070/decision/update/${updatedDecision._id}`, updatedDecision);
+      await axios.put(`http://localhost:3000/decision/update/${updatedDecision._id}`, updatedDecision);
       closeModal();
       alert("Decision updated successfully!");
+      window.location.reload();
     } catch (error) {
       console.error('Error updating decision data:', error);
     }
@@ -63,7 +64,7 @@ function DecisionView() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this decision?")) {
       try {
-        await axios.delete(`http://localhost:8070/decision/delete/${id}`);
+        await axios.delete(`http://localhost:3000/decision/delete/${id}`);
         setDecisions(prevDecisions => prevDecisions.filter(decision => decision._id !== id));
         console.log('Decision deleted successfully.');
       } catch (error) {

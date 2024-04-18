@@ -2,9 +2,9 @@ import React from 'react'
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 
 const data = [
-	{ name: 'Male', value: 540 },
-	{ name: 'Female', value: 620 },
-	{ name: 'Other', value: 210 }
+	{ name: '2023', value: 540 },
+	{ name: '2022', value: 620 },
+	{ name: '2021', value: 210 }
 ]
 
 const RADIAN = Math.PI / 180

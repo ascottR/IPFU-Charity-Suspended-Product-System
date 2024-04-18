@@ -88,7 +88,7 @@ function DDchart() {
 						<Tooltip />
 						<Legend />
 						<Bar dataKey="Discount" fill="#bcf542" />
-						<Bar dataKey="Donation" fill="#c42d9a" />
+						<Bar dataKey="Donation" fill="#03a9fc" />
 
             </BarChart>
         </ResponsiveContainer> 

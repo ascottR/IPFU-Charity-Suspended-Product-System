@@ -11,6 +11,23 @@ function DecisionForm() {
     function sendData(e) {
         e.preventDefault();
 
+        // Validate Manager ID
+        if (managerId.length !== 8) {
+            setError("Manager ID must be 8 characters long.");
+            return;
+        }
+
+        // Validate Decision Title
+        if (decisionTitle.length > 25) {
+            setError("Decision Title must be at most 25 characters long.");
+            return;
+        }
+
+        // Validate Decision Text
+        if (decision.length > 200) {
+            setError("Decision must be at most 200 characters long.");
+            return;
+        }
         
         if (!managerName || !managerId || !decisionTitle || !decision) {
             setError("Please fill in all fields.");
@@ -24,7 +41,7 @@ function DecisionForm() {
             decisions: decision
         }
 
-        axios.post("http://localhost:8070/decision/add", newDecision)
+        axios.post("http://localhost:3000/decision/add", newDecision)
             .then(() => {
                 alert("Decision Added");
                 setManagerName('');

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Pickups from "./pages/smPickups";
-import Dashboard from "./pages/smDashboard";
+import smDashboard from "./pages/smDashboard";
 import Settings from "./pages/smSettings";
 import InventorySM from "./pages/smInventory";
 import { ToastContainer } from "react-toastify";
@@ -15,6 +15,10 @@ import LoginPage from "./pages/LoginPage";
 
 import TopBar from "./components/Topbar";
 
+import Layout from './components/shared/Layout'
+import Dashboard from './pages/Dashboard'
+import ManagerDashboard from './pages/ManagerDashboard'
+
 const App = () => {
   return (
     <Router>
@@ -23,7 +27,7 @@ const App = () => {
         <Navbar />
         <main className="main-content">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/shopdash" element={<smDashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/pickups" element={<Pickups />} />
             <Route path="/inventory" element={<InventorySM />} />
@@ -39,6 +43,11 @@ const App = () => {
               }
             />
             <Route path="/login" element={<LoginPage />} />
+
+            <Route path="/dash" element={<Layout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="manager" element={<ManagerDashboard />} />
+                </Route>
           </Routes>
         </main>
         <ToastContainer />
