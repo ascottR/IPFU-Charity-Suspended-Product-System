@@ -4,6 +4,7 @@ import swal from "sweetalert2";
 import { useLocation, useNavigate } from 'react-router-dom';
 import {useRef} from "react";
 import emailjs from '@emailjs/browser';
+import logo from '../assets/img/logo.png';
 
 
 function isNumeric(value) {
@@ -30,7 +31,7 @@ const form = useRef()
           swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Please fill in all fields.",
+            text: "Please fill reply fields.",
           });
           return;
         }
@@ -93,17 +94,20 @@ const form = useRef()
   
     return (
         <div className="app">
-            <header className="app-bar">
-                <div className="logo">IPFU</div>
-                <nav className="menu-links">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Status</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-            </header>
+          <header className="app-bar">
+<img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
+
+<h1 className="navbar-company-name" style={{ fontSize: "1.2rem", fontWeight: "bold",  marginright: "5px",color:'white' }}>I Paid For You</h1>
+      <nav className="menu-links">
+        <ul>
+          <li><a href="/#">Home</a></li>
+          <li><a href="/feedbackui">Feedback</a></li>
+          <li><a href="/requestt">Request</a></li>
+          <li><a href="/replycrud">Replies</a></li>
+        </ul>
+      </nav>
+    </header>
+            
   
             <div style={{ margin: '20px auto', width: '100%', maxWidth: '900px', minHeight: '500px',padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
     <form className="reply-form">

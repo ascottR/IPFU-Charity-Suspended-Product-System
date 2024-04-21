@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
  import img2 from '../assets/img/bg.png';
 import axios from "axios";
 import swal from "sweetalert2";
+import logo from '../assets/img/logo.png';
+
 
 
 function isNumeric(value) {
@@ -34,17 +36,23 @@ function sentData(e) {
     });
     return;
   }
+if(!email.includes("@")){
+  swal.fire({
+    icon: "error",
+    title: "Invalid email",
+    text: "Please enter valid email address.",
+  });
+  return;
+}
 
-  if (!email.includes("@")) {
-    // Email field doesn't contain "@"
-    swal.fire({
-      icon: "error",
-      title: "Invalid Email",
-      text: "Please enter a valid email address.",
-    });
-    return;
-  }
-
+if (isNumeric(Name)) {
+  swal.fire({
+    icon: "error",
+    title: "Invalid Name",
+    text: "Please enter only strings in the name field.",
+  });
+  return;
+}
 
   const newFeedback = {
     Name,
@@ -81,14 +89,16 @@ function sentData(e) {
   return (
 
     <div className="app">
-    <header className="app-bar">
-      <div className="logo">IPFU</div>
+   <header className="app-bar">
+<img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
+
+<h1 className="navbar-company-name" style={{ fontSize: "1.2rem", fontWeight: "bold",  marginright: "5px",color:'white' }}>I Paid For You</h1>
       <nav className="menu-links">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Status</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/#">Home</a></li>
+          <li><a href="/feedbackui">Feedback</a></li>
+          <li><a href="/requestt">Request</a></li>
+          <li><a href="/replycrud">Replies</a></li>
         </ul>
       </nav>
     </header>
@@ -134,19 +144,9 @@ function sentData(e) {
           <div className="google-login-wrapper" style={{ padding: '10px' }}>
 
           </div>
-          <button className="google-login" style={{ 
-  backgroundColor: '#008000', // Set background color
-  color: 'white', // Set font color to white
-  padding: '12px 24px', // Adjust padding to increase button size
-  borderRadius: '8px', // Add border radius
-  border: 'none', // Remove border
-  cursor: 'pointer', // Change cursor to pointer on hover
-  fontSize: '16px', // Adjust font size
-}}>
+          
   
-  <img className="google-icon" alt="" src="/google-icon.svg" />
-  <span className="continue-with-google">Continue with Google</span>
-</button>
+  
 
           
           <div className="separator-wrapper" style={{ padding: '10px' }}>
@@ -154,8 +154,7 @@ function sentData(e) {
               <div className="line-wrapper">
                 <div className="line" />
               </div>
-              <span className="or">or</span>
-            </div>
+              <span className="or" style={{fontSize: '40px' }}>Submit Your Feedback</span>            </div>
           </div>
           <div className="your-name-label" style={{ padding: '10px' }}>
             <span className="your-full-name" htmlFor="name"> Your Full Name</span>

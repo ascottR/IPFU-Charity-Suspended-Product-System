@@ -3,6 +3,8 @@ import '../assets/css/Feedbackcrud_ui.css';
 import axios from 'axios';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/img/logo.png';
+
 
 
 const Feedbackcrud_ui = ({rows , fetchData}) => {
@@ -34,20 +36,25 @@ const handleUpdate = (Name, email,Feedback) => {
   return (
 
     <div className="app">
+   
     <header className="app-bar">
-      <div className="logo">IPFU</div>
+<img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
+
+<h1 className="navbar-company-name" style={{ fontSize: "1.2rem", fontWeight: "bold",  marginright: "5px",color:'white' }}>I Paid For You</h1>
       <nav className="menu-links">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="/#">Home</a></li>
           <li><a href="/feedbackui">Feedback</a></li>
           <li><a href="/requestt">Request</a></li>
-          <li><a href="/replycrud">Replies</a></li>
         </ul>
       </nav>
     </header>
+
+
+
     <div className="container">
-      <div className="table-container">
-      <table className="table" style={{ width: '1500px', fontSize: '16px', padding: '20px', border: '2px solid black' }}>
+    <div className="table-container" style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '30px', fontWeight: 'bold', marginBottom: '50px', paddingTop:'0px' }}>Manage Feedback</div>         <table className="table" style={{ width: '1500px', fontSize: '16px', padding: '20px', border: '2px solid black' }}>
           <thead>
                 <tr>
                   <th style={{ color: 'black', backgroundColor: '#2ECC71',fontSize: '20px' ,padding: '20px'}}>Name</th> {/* Set the text color to white */}
@@ -57,7 +64,7 @@ const handleUpdate = (Name, email,Feedback) => {
                 </tr>
               </thead>
 
-              <tbody style={{ fontSize: '18px' }}>
+              <tbody style={{ fontSize: '16px' }}>
                 {rows.length > 0 ? (
                   rows.map(row => (
                     <tr key={row.Name}>

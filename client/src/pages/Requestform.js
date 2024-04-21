@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
  import img2 from '../assets/img/bg.png';
 import axios from "axios";
+import logo from '../assets/img/logo.png';
+
 import swal from "sweetalert2";
 
 function isNumeric(value) {
@@ -26,20 +28,30 @@ function sentData(e) {
     });
     return;
   }
-  if (!email.includes('@')) {
-    swal.fire({
-      icon: "error",
-      title: "Invalid Email",
-      text: "Please enter a valid email address.",
-    });
-    return;
-  }
-
+ 
   if (isNumeric(Request)) {
     swal.fire({
       icon: "error",
       title: "Invalid Request",
       text: "Please enter only strings in the request field.",
+    });
+    return;
+  }
+
+  if(!email.includes("@")){
+    swal.fire({
+      icon: "error",
+      title: "Invalid email",
+      text: "Please enter valid email address.",
+    });
+    return;
+  }
+  
+  if (isNumeric(Name)) {
+    swal.fire({
+      icon: "error",
+      title: "Invalid Name",
+      text: "Please enter only strings in the name field.",
     });
     return;
   }
@@ -78,17 +90,21 @@ function sentData(e) {
   return (
 
     <div className="app">
-     <header className="app-bar" style={{ height: '50px' }}>
-  <div className="logo">IPFU</div>
-  <nav className="menu-links">
-    <ul>
-      <li><a href="#" style={{ fontSize: '17px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Home</a></li>
-      <li><a href="/feedbackui" style={{ fontSize: '17px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Feedback</a></li>
-      <li><a href="/requestt" style={{ fontSize: '17px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Request</a></li>
-      <li><a href="/replyt" style={{ fontSize: '17px', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Managerreply</a></li>
-    </ul>
-  </nav>
-</header>
+     
+
+
+<header className="app-bar">
+<img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
+
+<h1 className="navbar-company-name" style={{ fontSize: "1.2rem", fontWeight: "bold",  marginright: "5px" ,color:'white'}}>I Paid For You</h1>
+      <nav className="menu-links">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="/feedbackui">Feedback</a></li>
+          <li><a href="/requestt">Request</a></li>
+        </ul>
+      </nav>
+    </header>
 
 
 
@@ -129,22 +145,7 @@ function sentData(e) {
           padding: '20px',
         }}>
         <div className="submit-button" style={{ textAlign: 'center', padding: '20px' }}>
-          <div className="google-login-wrapper" style={{ padding: '10px' }}>
-
-          </div>
-          <button className="google-login" style={{ 
-  backgroundColor: '#008000', // Set background color
-  color: 'white', // Set font color to white
-  padding: '12px 24px', // Adjust padding to increase button size
-  borderRadius: '8px', // Add border radius
-  border: 'none', // Remove border
-  cursor: 'pointer', // Change cursor to pointer on hover
-  fontSize: '16px', // Adjust font size
-}}>
-  
-  <img className="google-icon" alt="" src="/google-icon.svg" />
-  <span className="continue-with-google">Continue with Google</span>
-</button>
+       
 
           
           <div className="separator-wrapper" style={{ padding: '10px' }}>
@@ -152,7 +153,7 @@ function sentData(e) {
               <div className="line-wrapper">
                 <div className="line" />
               </div>
-              <span className="or">or</span>
+              <span className="or" style={{fontSize: '40px' }}>Submit Your Request</span>
             </div>
           </div>
           <div className="your-name-label" style={{ padding: '10px' }}>

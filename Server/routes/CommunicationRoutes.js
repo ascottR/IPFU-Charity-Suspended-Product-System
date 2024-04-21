@@ -1,6 +1,6 @@
 const express = require('express');
 const router =express.Router();
-const controller =require('../controller/CommunicationContoller');
+const controller =require('../controllers/CommunicationContoller');
 
 router.get('/feedbacks',controller.getfeedbacks);
 router.post('/createfeedback',controller.addFeedback);

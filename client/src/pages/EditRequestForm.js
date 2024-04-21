@@ -3,6 +3,8 @@ import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import img2 from '../assets/img/bg.png';
 import swal from "sweetalert2";
+import logo from '../assets/img/logo.png';
+
 
 const EditRequestForm = ({ data }) => {
 
@@ -63,15 +65,18 @@ const [action, setAction] = useState('Update');
 
   return (
 
+    <div className="app">
 
-    <><header className="app-bar">
-      <div className="logo">IPFU</div>
+    <header className="app-bar">
+<img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
+
+<h1 className="navbar-company-name" style={{ fontSize: "1.2rem", fontWeight: "bold",  marginright: "5px",color:'white' }}>I Paid For You</h1>
       <nav className="menu-links">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Status</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/#">Home</a></li>
+          <li><a href="/feedbackui">Feedback</a></li>
+          <li><a href="/requestt">Request</a></li>
+          <li><a href="/replycrud">Replies</a></li>
         </ul>
       </nav>
     </header>
@@ -115,19 +120,7 @@ const [action, setAction] = useState('Update');
             <div className="google-login-wrapper" style={{ padding: '10px' }}>
 
             </div>
-            <button className="google-login" style={{
-              backgroundColor: '#008000', // Set background color
-              color: 'white', // Set font color to white
-              padding: '12px 24px', // Adjust padding to increase button size
-              borderRadius: '8px', // Add border radius
-              border: 'none', // Remove border
-              cursor: 'pointer', // Change cursor to pointer on hover
-              fontSize: '16px', // Adjust font size
-            }}>
-
-              <img className="google-icon" alt="" src="/google-icon.svg" />
-              <span className="continue-with-google">Continue with Google</span>
-            </button>
+            
 
 
             <div className="separator-wrapper" style={{ padding: '10px' }}>
@@ -135,7 +128,7 @@ const [action, setAction] = useState('Update');
                 <div className="line-wrapper">
                   <div className="line" />
                 </div>
-                <span className="or">or</span>
+                <span className="or" style={{fontSize: '40px' }}> Update Your Request</span>           
               </div>
             </div>
             <div className="your-name-label" style={{ padding: '10px' }}>
@@ -208,9 +201,10 @@ const [action, setAction] = useState('Update');
         </div>
 
 
+        </div>
 
 
-      </div></>
+      </div>
   );
 };
 
