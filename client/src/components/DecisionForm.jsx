@@ -41,8 +41,8 @@ function DecisionForm() {
         e.preventDefault();
 
         // Validate Manager ID
-        if (/\d/.test(managerId) || managerId.length !== 8) {
-            setError("Manager ID must be 8 characters long and must not contain numbers.");
+        if ( managerId.length !== 8) {
+            setError("Manager ID must be 8 characters long ");
             return;
         }
 
