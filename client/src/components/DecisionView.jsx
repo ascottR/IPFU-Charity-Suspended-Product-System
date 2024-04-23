@@ -78,7 +78,7 @@ function DecisionView() {
   const filteredDecisions = decisions.filter(decision => decision.m_name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
+    <div className="bg-white px-4 pt-2 pb-4 rounded-sm border border-gray-200 flex-1">
       <strong className="text-gray-700 font-medium">Decisions</strong>
       {/* Search bar */}
       <div className="flex items-center mt-3 mb-4">

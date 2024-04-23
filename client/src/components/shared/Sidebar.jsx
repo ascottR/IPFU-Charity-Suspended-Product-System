@@ -6,7 +6,7 @@ import { HiOutlineLogout } from 'react-icons/hi'
 
 function Sidebar() {
   return (
-    <div className='bg-green-500 w-60 p-5 flex flex-col text-black'>
+    <div className='bg-green-500 w-60 p-6  flex flex-col text-black'>
         <div className='flex items-center gap-3 px-16 py-1'>
             <span className='text-black text-xl items-center'>Decision Analytics</span>
         </div>
