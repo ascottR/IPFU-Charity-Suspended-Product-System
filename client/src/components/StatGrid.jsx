@@ -14,8 +14,7 @@ export default function StatsGrid() {
 
     // Add individual statistics
     const statistics = [
-      { icon: <IoPeople />, label: "Total Doners", value: "250", change: "+12" },
-      { icon: <IoPeople />, label: "Total Receivers", value: "216", change: "+24" },
+
       { icon: <IoCart />, label: "Available Products", value: "16" },
       { icon: <IoBagHandle />, label: "Discount Given", value: "LKR.2435", change: "10% per product" }
     ];
@@ -39,8 +38,16 @@ export default function StatsGrid() {
         <div className="pl-4">
           <span className="text-sm text-gray-500 font-light">Total Doners</span>
           <div className="flex items-center">
-            <strong className="text-xl text-gray-700 font-semibold">250</strong>
-            <span className="text-sm text-green-500 pl-2">+12</span>
+            <strong className="text-xl text-gray-700 font-semibold"><div> <iframe
+   
+   src="https://charts.mongodb.com/charts-project-0-fxlrgxm/embed/charts?id=6638ac68-942c-4a81-8675-a4a0261add8f&maxDataAge=60&theme=light&autoRefresh=true"
+   title="MongoDB Chart"
+    width="100"
+    height="100"
+    allowFullScreen
+  ></iframe></div>
+            </strong>
+            
           </div>
         </div>
       </BoxWrapper>
@@ -51,8 +58,15 @@ export default function StatsGrid() {
         <div className="pl-4">
           <span className="text-sm text-gray-500 font-light">Total Receivers</span>
           <div className="flex items-center">
-            <strong className="text-xl text-gray-700 font-semibold">216</strong>
-            <span className="text-sm text-green-500 pl-2">+24</span>
+            <strong className="text-xl text-gray-700 font-semibold"><div><iframe
+      
+      src="https://charts.mongodb.com/charts-project-0-fxlrgxm/embed/charts?id=6638b2ef-e784-47f1-8258-acbf91782f78&maxDataAge=60&theme=light&autoRefresh=true"
+      title="MongoDB Chart"
+      width="100"
+      height="100"
+      allowFullScreen
+    ></iframe></div></strong>
+            
           </div>
         </div>
       </BoxWrapper>
@@ -61,7 +75,7 @@ export default function StatsGrid() {
           <IoCart className="text-2xl text-white" />
         </div>
         <div className="pl-4">
-          <span className="text-sm text-gray-500 font-light">Available Products</span>
+          <span className="text-sm text-gray-500 font-light">Sales</span>
           <div className="flex items-center">
             <strong className="text-xl text-green-500 font-semibold">16</strong>
           </div>

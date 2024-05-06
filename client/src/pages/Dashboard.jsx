@@ -6,16 +6,18 @@ import DecisionView from '../components/DecisionView'
 
 function Dashboard() {
   return (
-    <div className='flex gap-4 flex-col'>
-      <StatGrid/>
-      <div className='flex gap-4 flex-row w-full'>
-      <DDchart/>
-      <YsalesP/>
+   
+      <div className='flex gap-4 flex-col'>
+        <StatGrid/>
+        <div className='flex gap-4 flex-row w-full'>
+          <DDchart/>
+          <YsalesP/>
+        </div>
+        <div className='flex gap-4 flex-row w-full'>
+          <DecisionView/>
+        </div>
       </div>
-      <div className='flex gap-4 flex-row w-full'>
-        <DecisionView/>
-      </div>
-    </div>
+    
   )
 }
 
