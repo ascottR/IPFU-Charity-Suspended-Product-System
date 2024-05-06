@@ -5,6 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -25,6 +26,8 @@ connection.once("open", () => {
 // Routes
 const eventRouter = require("./routes/eventsRoutes");
 app.use("/event", eventRouter);
+const paymentRouter = require("./routes/paymentsRoutes");
+app.use("/payment", paymentRouter);
 
 
 // Start server

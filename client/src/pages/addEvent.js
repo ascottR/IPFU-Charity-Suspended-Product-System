@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import back from '../assets/img/s.png';
-import { PDFDownloadLink, Document, Page, Text, View } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image, PDFDownloadLink } from '@react-pdf/renderer';
+
 
 
 export default function AddEvent() {
@@ -80,22 +81,68 @@ export default function AddEvent() {
       });
   };
 // validate
-  const validate = () => {
-    const errors = {};
-    if (!name) {
-      errors.name = "Event name is required!";
+const validate = () => {
+  const errors = {};
+  const nameRegex = /^[a-zA-Z\s]+$/; // Only letters and spaces allowed
+  const descriptionRegex = /^[a-zA-Z\s.,!?]+$/; 
+  const locationRegex = /^[a-zA-Z\s]+$/; 
+
+  if (!name) {
+    errors.name = "Event name is required!";
+  } else if (!name.match(nameRegex)) {
+    errors.name = "Event name can only contain letters and spaces!";
+  }
+
+  if (!description) {
+    errors.description = "Event description is required!";
+  } else if (!description.match(descriptionRegex)) {
+    errors.description = "Event description can only contain letters, spaces, and basic punctuation!";
+  }
+
+  if (!date) {
+    errors.date = "Event date is required!";
+  } else {
+    const eventDate = new Date(date);
+    const currentDate = new Date();
+    if (eventDate < currentDate) {
+      errors.date = "Event date cannot be in the past!";
     }
-    if (!description) {
-      errors.description = "Event description is required!";
-    }
-    if (!date) {
-      errors.date = "Event date is required!";
-    }
-    if (!location) {
-      errors.location = "Event location is required!";
-    }
-    return errors;
-  };
+  }
+
+  if (!location) {
+    errors.location = "Event location is required!";
+  } else if (!location.match(locationRegex)) {
+    errors.location = "Event location can only contain letters and spaces!";
+  }
+
+  return errors;
+};
+
+const handleNameChange = (e) => {
+  const inputValue = e.target.value;
+  if (inputValue.length === 0 && e.key >= '0' && e.key <= '9') {
+    e.preventDefault();
+  } else {
+    setName(inputValue);
+  }
+};
+const getCurrentDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+
+  // Add leading zeros if necessary
+  if (month < 10) {
+    month = '0' + month;
+  }
+  if (day < 10) {
+    day = '0' + day;
+  }
+
+  return `${year}-${month}-${day}`;
+};
+
 
   const imageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -115,19 +162,79 @@ export default function AddEvent() {
     };
     reader.readAsDataURL(file);
   };
-  const EventPDF = () => (
-    <Document>
-      <Page>
-        <View>
-          {events.map((event, index) => (
-            <Text key={index}>
-              Name: {event.name}, Description: {event.description}, Date: {event.date}, Location: {event.location}
-            </Text>
-          ))}
+  // Define styles for the PDF document
+const styles = StyleSheet.create({
+  page: {
+    padding: 20,
+  },
+  table: {
+    display: 'table',
+    width: 'auto',
+    borderStyle: 'solid',
+    borderWidth: 1,
+  },
+  tableRow: {
+    flexDirection: 'row',
+  },
+  tableCol: {
+    width: '25%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    padding: 5,
+  },
+  tableCell: {
+    fontSize: 12,
+  },
+});
+
+//EventPDF component
+const EventPDF = ({ events }) => (
+  <Document>
+    <Page style={styles.page}>
+     <Text>DONATION PROGRAMMES</Text>
+      <br/>
+      <View style={styles.tableRow}>
+        <View style={styles.tableCol}>
+          <Text style={styles.tableCell}>Event Name</Text>
         </View>
-      </Page>
-    </Document>
-  );
+        <View style={styles.tableCol}>
+          <Text style={styles.tableCell}>Event Description</Text>
+        </View>
+        <View style={styles.tableCol}>
+          <Text style={styles.tableCell}>Event Image</Text>
+        </View>
+        <View style={styles.tableCol}>
+          <Text style={styles.tableCell}>Event Date</Text>
+        </View>
+        <View style={styles.tableCol}>
+          <Text style={styles.tableCell}>Event Location</Text>
+        </View>
+      </View>
+
+      {/* Table Rows */}
+      {events.map((event, index) => (
+        <View style={styles.tableRow} key={index}>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>{event.name}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>{event.description}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Image style={styles.tableImage} src={event.image} />
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>{event.date}</Text>
+          </View>
+          <View style={styles.tableCol}>
+            <Text style={styles.tableCell}>{event.location}</Text>
+          </View>
+        </View>
+      ))}
+    </Page>
+  </Document>
+);
+
 
   return (
     // event add form
@@ -144,6 +251,7 @@ export default function AddEvent() {
               id="name"
               placeholder="Enter event name"
               value={name}
+              onKeyDown={handleNameChange}
               onChange={(e) => setName(e.target.value)} />
             <p className="error-message">{formErrors.name}</p>
           </div>
@@ -164,6 +272,7 @@ export default function AddEvent() {
               id="eventLocation"
               placeholder="Enter event location"
               value={location}
+              onKeyDown={handleNameChange}
               onChange={(e) => setLocation(e.target.value)} />
             <p className="error-message">{formErrors.location}</p>
           </div>
@@ -173,6 +282,7 @@ export default function AddEvent() {
               type="date"
               id="date"
               value={date}
+              min={getCurrentDate()}
               onChange={(e) => setDate(e.target.value)} />
             <p className="error-message">{formErrors.date}</p>
           </div>
@@ -201,14 +311,11 @@ export default function AddEvent() {
     </div><br/>
       
 {/* doanload events pdf*/}
-    <div className="manage-container">
-        <PDFDownloadLink document={<EventPDF />} fileName="events.pdf">
-          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download EVENTS PDF')}
-        </PDFDownloadLink>
-      </div>
-
-
-
+<div className="manage-container">
+    <PDFDownloadLink document={<EventPDF events={events} />} fileName="events.pdf">
+        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download EVENTS PDF')}
+    </PDFDownloadLink>
+</div>
       <div>  {/* dislay all events in a table*/}
         <h1 style={{ fontFamily: 'Pacifico, cursive',fontWeight: 'norboldmal', color: '#000' }}>All Events</h1>
         <table className="admin-table">
@@ -232,7 +339,7 @@ export default function AddEvent() {
                 <td><img src={`data:image/png;base64, ${event.image}`} alt="Event" style={{ maxWidth: '100px', maxHeight: '100px' }} />
 </td>
                 <td>  {/* event delete buttonn*/}
-          <button className="btn" onClick={() => handleDelete(event._id)}>Delete</button>
+          <button className="d_btn" onClick={() => handleDelete(event._id)}>Delete</button>
                 </td>
               </tr>
             ))}
