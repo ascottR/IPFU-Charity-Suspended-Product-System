@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
- import img2 from '../assets/img/bg.png';
+import img2 from '../assets/img/shaded.jpeg';
 import axios from "axios";
 import swal from "sweetalert2";
 import logo from '../assets/img/logo.png';
@@ -110,7 +110,7 @@ if (isNumeric(Name)) {
         height: '100vh', // Set height to full viewport height
       }}>
         {/* Image covering the whole screen */}
-        <img
+       <img
           alt=""
           src={img2}
           style={{
@@ -142,13 +142,7 @@ if (isNumeric(Name)) {
         }}>
         <div className="submit-button" style={{ textAlign: 'center', padding: '20px' }}>
           <div className="google-login-wrapper" style={{ padding: '10px' }}>
-
           </div>
-          
-  
-  
-
-          
           <div className="separator-wrapper" style={{ padding: '10px' }}>
             <div className="separator">
               <div className="line-wrapper">
@@ -211,38 +205,16 @@ style={{
                 style={{ width: '600px', minHeight: '150px',  border: '1px solid #ccc', // Add border
                 borderRadius: '5px', }}
               />
-<div style={{ padding: '10px' }}>
+<div style={{ padding: '35px' }}>
   <button onClick={sentData} style={{ backgroundColor: '#008000', color: 'white', border: 'none',
    margin: '0 auto', padding: '12px 24px', borderRadius: '8px', fontSize: '16px' }}>Submit Feedback</button>
 </div>
-
-  
-
 </div>
-            </div>
-         
+ </div>
 </div>
-
-
           </div>
-      
-
-
-
         </div>
         </div>
-    
-
-
-
-
-
-    
- 
-
-
-
-  
   );
 }
 

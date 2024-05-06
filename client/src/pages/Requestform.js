@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
- import img2 from '../assets/img/bg.png';
+ import img2 from '../assets/img/bggreen.jpg';
 import axios from "axios";
 import logo from '../assets/img/logo.png';
 
@@ -84,15 +84,9 @@ function sentData(e) {
 }
 
 
-
-
   const navigate = useNavigate();
   return (
-
     <div className="app">
-     
-
-
 <header className="app-bar">
 <img src={logo} alt="Company Logo" className="navbar-logo" style={{ width: "40px", height: "40px", marginRight: "20px" }} />
 
@@ -105,9 +99,6 @@ function sentData(e) {
         </ul>
       </nav>
     </header>
-
-
-
     <div style={{
         position: 'relative', // Make the parent container relative
         width: '100vw', // Set width to full viewport width
@@ -144,17 +135,10 @@ function sentData(e) {
           minHeight: "70vh",
           padding: '20px',
         }}>
-        <div className="submit-button" style={{ textAlign: 'center', padding: '20px' }}>
-       
 
-          
+        <div className="submit-button" style={{ textAlign: 'center', padding: '20px' }}>
           <div className="separator-wrapper" style={{ padding: '10px' }}>
-            <div className="separator">
-              <div className="line-wrapper">
-                <div className="line" />
-              </div>
               <span className="or" style={{fontSize: '40px' }}>Submit Your Request</span>
-            </div>
           </div>
           <div className="your-name-label" style={{ padding: '10px' }}>
             <span className="your-full-name" htmlFor="name"> Your Full Name</span>
@@ -173,7 +157,7 @@ style={{
                           padding: '8px', // Adjust padding
                          border: '1px solid #ccc', // Add border
                                     borderRadius: '5px', // Add border radius
-                                }}              />
+ }} />
             </div>
           </div>
           <div className="your-email-input" style={{ padding: '10px' }}>
@@ -210,35 +194,16 @@ style={{
                 style={{ width: '600px', minHeight: '150px',  border: '1px solid #ccc', // Add border
                 borderRadius: '5px', }}
               />
-<div style={{ padding: '10px' }}>
-  <button onClick={sentData} style={{ backgroundColor: '#008000', color: 'white', border: 'none', margin: '0 auto', padding: '12px 24px', borderRadius: '8px', fontSize: '16px' }}>Submit Request</button>
+<div style={{ padding: '35px' }}>
+  <button onClick={sentData} style={{ backgroundColor: '#008000', color: 'white', border: 'none', 
+  margin: '0 auto', padding: '12px 24px', borderRadius: '8px', fontSize: '16px' }}>Submit Request</button>
 </div>
-
-
 </div>
-            </div>
-         
+ </div> 
 </div>
-
-
-          </div>
-      
-
-
-
-        </div>
-        </div>
-      
-
-
-
-
-    
- 
-
-
-
-  
+</div>
+ </div>
+</div>
   );
 }
 

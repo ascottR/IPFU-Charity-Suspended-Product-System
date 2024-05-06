@@ -65,9 +65,23 @@ const handleUpdate = (Name, email,Request) => {
                     <td>{row.email}</td>
                     <td>{row.Request}</td>
                     <td>
-                      <button className="button"onClick={() =>  handleUpdate( row.Name, row.email,row.Request)}>UPDATE</button>
-                      <button className="button" onClick={() =>  handleDelete(row.Name)} style={{ backgroundColor: '#990000' }}>DELETE</button>
-                    </td>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+  <button
+    className="button"
+    onClick={() => handleUpdate(row.Name, row.email, row.Request)}
+    style={{ padding: '10px' }}
+  >
+    UPDATE
+  </button>
+  <button
+    className="button"
+    onClick={() => handleDelete(row.Name)}
+    style={{ backgroundColor: '#990000', padding: '10px' }}
+  >
+    DELETE
+  </button>
+</div>
+</td> 
                   </tr>
                 ))
               ) : (

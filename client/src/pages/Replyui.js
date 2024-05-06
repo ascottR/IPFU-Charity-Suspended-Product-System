@@ -75,23 +75,33 @@ const form = useRef()
 
       }
    
-  
-      const sendEmail = (e1) => {
-        e1.preventDefault();
+      const handleSendEmail = () => {
+        const templateParams = {
+            from_name: name,
+            to_email: email,
+            message_html: Reply
+        };
 
-        emailjs.sendForm('service_a9c190m', 'template_n2vw6h7', form.current, {publicKey: 'rzlLcTPFdFs3OebnX',})
-        .then((response) => {
-          console.log('Email sent successfully!' ,response);
-          
-         
+        emailjs.send('service_a9c190m', 'template_n2vw6h7', form.current, {
+          publicKey: 'rzlLcTPFdFs3OebnX',
         })
-        .catch((error) => {
-          console.error('FAILED...', error);
-         
-        });
+            .then((response) => {
+                swal.fire({
+                    icon: 'success',
+                    title: 'Email Sent!',
+                    text: 'Your reply has been sent successfully.'
+                });
+            })
+            .catch((error) => {
+                console.error('Email Error:', error);
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Failed to send email. Please try again later.'
+                });
+            });
+    };
 
-      }
-  
     return (
         <div className="app">
           <header className="app-bar">
@@ -149,11 +159,49 @@ const form = useRef()
             value={Reply}
             onChange={(e) => setReply(e.target.value)}
             placeholder="Type your reply here..."
-            rows={20}
+            rows={15}
             cols={50}
             style={{ width: '100%', marginBottom: '10px', padding: '5px', borderRadius: '5px', border: '1px solid #ccc' }}
         />
-        <button onClick={sendData} style={{ backgroundColor: '#2ECC71', cursor: 'pointer', display: 'block', margin: '0 auto' , color: '#fff',padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Submit Reply</button>
+
+
+
+<button
+  type="button"
+  onClick={handleSendEmail}
+  style={{
+    backgroundColor: '#2ECC71',
+    cursor: 'pointer',
+    display: 'block',
+    margin: '0 auto',
+    color: '#fff',
+    padding: '15px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    width: '150px', // Set a specific width for consistent button size
+  }}
+>
+  Send Email
+</button>
+
+<button
+  onClick={sendData}
+  style={{
+    backgroundColor: '#2ECC71',
+    cursor: 'pointer',
+    display: 'block',
+    margin: '10px auto 0',
+    color: '#fff',
+    padding: '15px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    width: '150px', // Set the same width as the other button
+  }}
+>
+  Submit Reply
+</button>
+
+
     </form>
 </div>
 

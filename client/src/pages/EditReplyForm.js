@@ -83,7 +83,7 @@ const EditReplyForm = ({data}) => {
           <li><a href="/#">Home</a></li>
           <li><a href="/feedbackui">Feedback</a></li>
           <li><a href="/requestt">Request</a></li>
-          <li><a href="/replyt">Admin</a></li>
+          <li><a href="/replyt">Manage Reply</a></li>
         </ul>
       </nav>
     </header>
@@ -130,11 +130,21 @@ const EditReplyForm = ({data}) => {
             value={Reply}
             onChange={(e) => setReply(e.target.value)}
             placeholder="Update your reply here..."
-            rows={20}
+            rows={15}
             cols={50}
             style={{ width: '100%', marginBottom: '10px', padding: '5px', borderRadius: '5px', border: '1px solid #ccc' }}
         />
-        <button onClick={handleUpdate} style={{ backgroundColor: '#2ECC71', cursor: 'pointer', display: 'block', margin: '0 auto' , color: '#fff',padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Update Reply</button>
+        <button onClick={handleUpdate}   style={{
+    backgroundColor: '#2ECC71',
+    cursor: 'pointer',
+    display: 'block',
+    margin: '10px auto 0',
+    color: '#fff',
+    padding: '15px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    width: '150px', // Set the same width as the other button
+  }}>Update Reply</button>
     </form>
 </div>
 
