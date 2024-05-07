@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import jsPDF from 'jspdf';
 
 function DecisionView() {
   // State variables
@@ -13,6 +14,7 @@ function DecisionView() {
     decisions: ''
   });
   const [searchTerm, setSearchTerm] = useState(''); // Holds the search term entered by the user
+  const tableRef = useRef(null); // Reference to the decision table
 
   // Fetch decision data from the backend when the component mounts
   useEffect(() => {
@@ -77,6 +79,42 @@ function DecisionView() {
   // Function to filter decisions by manager name
   const filteredDecisions = decisions.filter(decision => decision.m_name.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  // Function to generate and download the report
+  const generateReport = () => {
+    const doc = new jsPDF();
+    let y = 10;
+
+    filteredDecisions.forEach((decision) => {
+      const decisionLines = doc.splitTextToSize(`Decision: ${decision.decisions}`, 180);
+      const linesCount = decisionLines.length;
+      const lineHeight = 7;
+
+      // Check remaining space on the page
+      const pageHeight = doc.internal.pageSize.height;
+      if (y + lineHeight * (linesCount + 4) > pageHeight) {
+        doc.addPage();
+        y = 10; // Reset y position for the new page
+      }
+
+      doc.text(`Manager ID: ${decision.manager_id}`, 10, y);
+      doc.text(`Manager Name: ${decision.m_name}`, 10, y + lineHeight);
+      doc.text(`Decision Title: ${decision.d_title}`, 10, y + lineHeight * 2);
+      doc.text(`Decision: ${decisionLines[0]}`, 10, y + lineHeight * 3);
+
+      if (linesCount > 1) {
+        for (let i = 1; i < linesCount; i++) {
+          doc.text(decisionLines[i], 10, y + lineHeight * (i + 3));
+        }
+      }
+
+      y += lineHeight * (linesCount + 4);
+      // Add some space between decision entries
+      y += 10;
+    });
+
+    doc.save('decision_report.pdf');
+  };
+
   return (
     <div className="bg-white px-4 pt-2 pb-4 rounded-sm border border-gray-200 flex-1">
       <strong className="text-gray-700 font-medium">Decisions</strong>
@@ -93,7 +131,7 @@ function DecisionView() {
         />
       </div>
       {/* Decision table */}
-      <div className="border-x border-gray-200 rounded-sm overflow-auto max-h-96">
+      <div className="border-x border-gray-200 rounded-sm overflow-auto max-h-96" ref={tableRef}>
         <table className="w-full text-gray-700 border-separate border border-slate-400">
           <thead>
             <tr>
@@ -150,6 +188,10 @@ function DecisionView() {
           </div>
         </div>
       )}
+      {/* Report generation button */}
+      <div className="flex justify-end mt-4">
+        <button onClick={generateReport} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-500 focus:ring-opacity-50">Generate Report</button>
+      </div>
     </div>
   );
 }
